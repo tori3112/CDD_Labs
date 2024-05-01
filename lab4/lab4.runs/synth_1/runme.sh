@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/wiktoria/Documents/labs/cdd/lab4/lab4.runs/synth_1'
+HD_PWD='/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -36,4 +36,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log mp_adder.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source mp_adder.tcl
+EAStep vivado -log uart_top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source uart_top.tcl

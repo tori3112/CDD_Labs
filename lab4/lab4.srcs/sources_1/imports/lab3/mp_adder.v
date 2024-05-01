@@ -6,7 +6,7 @@ module mp_adder #(
       // if the operands you want to add have an OPERAND_WIDTH non-multiple of ADDER_WIDTH
       //   you'll have to extend them by padding them with zeroes
       parameter OPERAND_WIDTH = 512,
-      parameter ADDER_WIDTH   = 64,
+      parameter ADDER_WIDTH   = 32,
       parameter N_ITERATIONS  = OPERAND_WIDTH / ADDER_WIDTH
     )
     (
@@ -240,7 +240,7 @@ module mp_adder #(
     always @(posedge iClk)
     begin
       if(iRst)    regDone <= 1'd0; 
-      else        regDone <= ( rFSM_current == s_DONE ) ? 1'b1 : 1'b0;
+      else        regDone <= ( wFSM_next == s_DONE ) ? 1'b1 : 1'b0;
     end
 
     assign oDone = regDone;

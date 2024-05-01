@@ -18,18 +18,18 @@ module uart_top #(
   //reg [NBYTES*8-1:0] rBuffer; //[95:0] 
   
   reg [NBYTES*8-1:0] rA,rB;
-  reg [7:0]          rOperation;
+  reg [7:0] rOperation;
   
   
   // State definition  
-  localparam s_IDLE         = 3'b000; //0
-  localparam s_WAIT_RX_A    = 3'b001; //1
-  localparam s_WAIT_RX_B    = 3'b010; //2
-  localparam s_WAIT_OP      = 3'b011; //3
-  localparam s_MP_ADDER     = 3'b100; //4
-  localparam s_TX           = 3'b101; //5
-  localparam s_WAIT_TX      = 3'b110; //6
-  localparam s_DONE         = 3'b111; //7
+  localparam s_IDLE         = 3'b000;
+  localparam s_WAIT_RX_A    = 3'b001;
+  localparam s_WAIT_RX_B    = 3'b010; 
+  localparam s_WAIT_OP      = 3'b011;
+  localparam s_MP_ADDER     = 3'b100;
+  localparam s_TX           = 3'b101;
+  localparam s_WAIT_TX      = 3'b110;
+  localparam s_DONE         = 3'b111;
    
   // Declare all variables needed for the finite state machine 
   // -> the FSM state
@@ -47,9 +47,9 @@ module uart_top #(
   
   reg       riStart;
   
-  wire[NBYTES*8:0] wRes;
+  wire[NBYTES*8:0] wRes; // this is operand width + 1 bits because of the carry bit
   wire wDone;
-  reg[(NBYTES+1)*8-1:0] rRes;
+  reg[(NBYTES+1)*8-1:0] rRes; // this is a byte longer because this number is fed into the tx module which can only send bytes 
   
   
   uart_rx #(    .CLK_FREQ(CLK_FREQ), .BAUD_RATE(BAUD_RATE) )
@@ -100,8 +100,8 @@ module uart_top #(
       rTxByte <= 0;
       rA <= 0;
       rB <= 0;
-      riStart <= 0;
       rOperation <= 0;
+      riStart <= 0;
     end 
   else 
     begin
@@ -111,9 +111,9 @@ module uart_top #(
              rFSM <= s_WAIT_RX_A;
              rA <= 0;
              rB <= 0;
-             rRes <= 0;
              rOperation <= 0;
-             rCnt <=0;
+             rRes <= 0;
+             rCnt <= 0; // this was missing
           end
           
         s_WAIT_RX_A :
@@ -131,7 +131,9 @@ module uart_top #(
              begin
                 rCnt <= 0;
                 rFSM <= s_WAIT_RX_B; 
-             end                     
+             end
+                
+                  
           end
              
              
@@ -149,66 +151,74 @@ module uart_top #(
           else 
              begin
                 rCnt <= 0;
-                riStart = 1;
-                rFSM <= s_WAIT_OP; 
+                rFSM <= s_WAIT_OP;
              end   
           end
           
-       s_WAIT_OP:
-        begin
-            if (rCnt < 1)
+         s_WAIT_OP:
+         begin 
+         if(rCnt < 1)
+         begin
+         rFSM <= s_WAIT_OP;
+         if(wRxDone)
             begin
-                rFSM <= s_WAIT_OP;
-                if (wRxDone)
-                begin
-                    rOperation <= {wRxByte};
-                    rCnt <= rCnt+1;
-                end
+            rOperation <= {wRxByte};
+            rCnt <= rCnt + 1;
+            end 
+         end
+         else
+         begin
+            if(rOperation == 8'b00000001)
+            begin 
+                rB <= ~rB + 1'b1 ;
             end
-            else
-            begin
-                if (rOperation == 8'b0000001)
-                begin
-                    rB <= ~rB +1;
-                end
-                rCnt <= 0;
-                riStart <= 1;
-                rFSM <= s_MP_ADDER;
-            end
-        end   
+            rCnt <= 0;
+            riStart = 1;
+            rFSM <= s_MP_ADDER; 
+         end
+         end
           
        s_MP_ADDER:
        begin
         riStart = 0;
         if(wDone)
         begin
-        rRes <= {7'b0000000, wRes};
-        rFSM <= s_TX;
+        if(rOperation == 8'b00000001)
+        begin 
+            rRes <= {8'b00000000,wRes[NBYTES*8-1:0]};
+            rFSM <= s_TX;
+         end
+         else
+         begin 
+         rRes <= {7'b0000000,wRes};
+         rFSM <= s_TX;
+         end
         end
         else 
         begin
         rRes <= rRes;
         rFSM <= s_MP_ADDER;
         end
-       end   
-                  
+       end
+       
+              
         s_TX :
           begin
             if ( rCnt < NBYTES+1  && (wTxBusy == 0) ) 
               begin
                 rFSM <= s_WAIT_TX;
                 rTxStart <= 1; 
-                rTxByte <= rRes[(NBYTES+1)*8-1:(NBYTES+1)*8-8];    // we send the uppermost byte
+                rTxByte <= rRes[(NBYTES+1)*8-1:(NBYTES+1)*8-8];            // we send the uppermost byte
                 rRes <= {rRes[(NBYTES+1)*8-9:0] , 8'b00000000};    // we shift from right to left
                 rCnt <= rCnt + 1;
               end 
             else 
               begin
                 rFSM <= s_DONE;
+                rRes <= rRes;
                 rTxStart <= 0;
                 rTxByte <= 0;
                 rCnt <= 0;
-                rRes <= rRes;
               end
             end 
             
@@ -217,7 +227,7 @@ module uart_top #(
                 if (wTxDone)
                 begin
                   rFSM <= s_TX;
-                  rTxStart <= rTxStart;
+                  rTxStart <= rTxStart; // this was missing
                 end 
                 else
                 begin
@@ -229,8 +239,7 @@ module uart_top #(
             s_DONE :
               begin
                 rFSM <= s_IDLE;
-              end
-              
+              end 
 
             default :
               rFSM <= s_IDLE;
@@ -238,5 +247,6 @@ module uart_top #(
           endcase
       end
     end       
-        
+    
+    
 endmodule

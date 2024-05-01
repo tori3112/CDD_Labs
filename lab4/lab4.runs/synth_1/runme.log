@@ -1,6 +1,6 @@
 
 *** Running vivado
-    with args -log mp_adder.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source mp_adder.tcl
+    with args -log uart_top.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source uart_top.tcl
 
 
 ****** Vivado v2020.1 (64-bit)
@@ -8,92 +8,124 @@
   **** IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
     ** Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 
-source mp_adder.tcl -notrace
-Command: synth_design -top mp_adder -part xc7z020clg400-1
+source uart_top.tcl -notrace
+Command: synth_design -top uart_top -part xc7z020clg400-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Device 21-403] Loading part xc7z020clg400-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 4 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 155304
+INFO: [Synth 8-7075] Helper process launched with PID 600006
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2093.246 ; gain = 0.000 ; free physical = 4938 ; free virtual = 10734
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2093.246 ; gain = 0.000 ; free physical = 826 ; free virtual = 12491
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'mp_adder' [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/sources_1/imports/lab3/mp_adder.v:3]
+INFO: [Synth 8-6157] synthesizing module 'uart_top' [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/imports/cdd/lab3/lab3.srcs/sources_1/imports/lab2/uart_top.v:3]
 	Parameter OPERAND_WIDTH bound to: 512 - type: integer 
-	Parameter ADDER_WIDTH bound to: 64 - type: integer 
-	Parameter N_ITERATIONS bound to: 8 - type: integer 
+	Parameter ADDER_WIDTH bound to: 32 - type: integer 
+	Parameter NBYTES bound to: 64 - type: integer 
+	Parameter CLK_FREQ bound to: 125000000 - type: integer 
+	Parameter BAUD_RATE bound to: 115200 - type: integer 
+	Parameter s_IDLE bound to: 3'b000 
+	Parameter s_WAIT_RX_A bound to: 3'b001 
+	Parameter s_WAIT_RX_B bound to: 3'b010 
+	Parameter s_WAIT_OP bound to: 3'b011 
+	Parameter s_MP_ADDER bound to: 3'b100 
+	Parameter s_TX bound to: 3'b101 
+	Parameter s_WAIT_TX bound to: 3'b110 
+	Parameter s_DONE bound to: 3'b111 
+INFO: [Synth 8-6157] synthesizing module 'uart_rx' [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/imports/cdd/lab3/lab3.srcs/sources_1/new/uart_rx.v:3]
+	Parameter CLK_FREQ bound to: 125000000 - type: integer 
+	Parameter BAUD_RATE bound to: 115200 - type: integer 
+	Parameter CLKS_PER_BIT bound to: 1085 - type: integer 
+	Parameter sIDLE bound to: 3'b000 
+	Parameter sRX_START bound to: 3'b001 
+	Parameter sRX_DATA bound to: 3'b010 
+	Parameter sRX_STOP bound to: 3'b011 
+	Parameter sDONE bound to: 3'b100 
+INFO: [Synth 8-6155] done synthesizing module 'uart_rx' (1#1) [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/imports/cdd/lab3/lab3.srcs/sources_1/new/uart_rx.v:3]
+INFO: [Synth 8-6157] synthesizing module 'mp_adder' [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/imports/lab3/mp_adder.v:3]
+	Parameter OPERAND_WIDTH bound to: 512 - type: integer 
+	Parameter ADDER_WIDTH bound to: 32 - type: integer 
+	Parameter N_ITERATIONS bound to: 16 - type: integer 
 	Parameter s_IDLE bound to: 3'b000 
 	Parameter s_STORE_OPS bound to: 3'b001 
 	Parameter s_ADD_FIRST bound to: 3'b010 
 	Parameter s_ADD_WORDS bound to: 3'b011 
 	Parameter s_DONE bound to: 3'b100 
-INFO: [Synth 8-6157] synthesizing module 'carry_select_adder_module' [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/sources_1/new/carry_select_adder_module.v:3]
-	Parameter ADDER_WIDTH bound to: 64 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'carry_select_adder_module' [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/new/carry_select_adder_module.v:3]
+	Parameter ADDER_WIDTH bound to: 32 - type: integer 
 	Parameter BLOCK_WIDTH bound to: 8 - type: integer 
-	Parameter BLOCK_SIZE bound to: 8 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'carry_select_adder_block' [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/sources_1/new/carry_select_adder_block.v:3]
+	Parameter BLOCK_SIZE bound to: 4 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'carry_select_adder_block' [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/new/carry_select_adder_block.v:3]
 	Parameter ADDER_BITS bound to: 8 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'ripple_carry_adder_Nb' [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/sources_1/imports/new/ripple_carry_adder_Nb.v:3]
+INFO: [Synth 8-6157] synthesizing module 'ripple_carry_adder_Nb' [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/imports/new/ripple_carry_adder_Nb.v:3]
 	Parameter ADDER_WIDTH bound to: 8 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'full_adder' [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/sources_1/imports/cdd/lab1/lab1.srcs/sources_1/new/full_adder.v:3]
-INFO: [Synth 8-6155] done synthesizing module 'full_adder' (1#1) [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/sources_1/imports/cdd/lab1/lab1.srcs/sources_1/new/full_adder.v:3]
-INFO: [Synth 8-6155] done synthesizing module 'ripple_carry_adder_Nb' (2#1) [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/sources_1/imports/new/ripple_carry_adder_Nb.v:3]
-INFO: [Synth 8-6155] done synthesizing module 'carry_select_adder_block' (3#1) [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/sources_1/new/carry_select_adder_block.v:3]
-INFO: [Synth 8-6155] done synthesizing module 'carry_select_adder_module' (4#1) [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/sources_1/new/carry_select_adder_module.v:3]
-INFO: [Synth 8-6155] done synthesizing module 'mp_adder' (5#1) [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/sources_1/imports/lab3/mp_adder.v:3]
+INFO: [Synth 8-6157] synthesizing module 'full_adder' [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/imports/cdd/lab1/lab1.srcs/sources_1/new/full_adder.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'full_adder' (2#1) [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/imports/cdd/lab1/lab1.srcs/sources_1/new/full_adder.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'ripple_carry_adder_Nb' (3#1) [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/imports/new/ripple_carry_adder_Nb.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'carry_select_adder_block' (4#1) [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/new/carry_select_adder_block.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'carry_select_adder_module' (5#1) [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/new/carry_select_adder_module.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'mp_adder' (6#1) [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/imports/lab3/mp_adder.v:3]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx' [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/imports/cdd/lab3/lab3.srcs/sources_1/imports/lab2/uart_tx.v:3]
+	Parameter CLK_FREQ bound to: 125000000 - type: integer 
+	Parameter BAUD_RATE bound to: 115200 - type: integer 
+	Parameter CLKS_PER_BIT bound to: 1085 - type: integer 
+	Parameter sIDLE bound to: 3'b000 
+	Parameter sTX_START bound to: 3'b001 
+	Parameter sTX_DATA bound to: 3'b010 
+	Parameter sTX_STOP bound to: 3'b011 
+	Parameter sDONE bound to: 3'b100 
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx' (7#1) [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/imports/cdd/lab3/lab3.srcs/sources_1/imports/lab2/uart_tx.v:3]
+INFO: [Synth 8-226] default block is never used [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/imports/cdd/lab3/lab3.srcs/sources_1/imports/lab2/uart_top.v:108]
+INFO: [Synth 8-6155] done synthesizing module 'uart_top' (8#1) [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/sources_1/imports/cdd/lab3/lab3.srcs/sources_1/imports/lab2/uart_top.v:3]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2114.270 ; gain = 21.023 ; free physical = 5030 ; free virtual = 10827
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2119.270 ; gain = 26.023 ; free physical = 887 ; free virtual = 12551
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2129.113 ; gain = 35.867 ; free physical = 5027 ; free virtual = 10824
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2137.082 ; gain = 43.836 ; free physical = 891 ; free virtual = 12555
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 2129.113 ; gain = 35.867 ; free physical = 5027 ; free virtual = 10824
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 2137.082 ; gain = 43.836 ; free physical = 891 ; free virtual = 12555
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2129.113 ; gain = 0.000 ; free physical = 5021 ; free virtual = 10818
+Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2137.082 ; gain = 0.000 ; free physical = 885 ; free virtual = 12550
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/constrs_1/imports/new/PYNQ-Z2v1.0.xdc]
-WARNING: [Vivado 12-584] No ports matched 'iRx'. [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/constrs_1/imports/new/PYNQ-Z2v1.0.xdc:152]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/constrs_1/imports/new/PYNQ-Z2v1.0.xdc:152]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-WARNING: [Vivado 12-584] No ports matched 'oTx'. [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/constrs_1/imports/new/PYNQ-Z2v1.0.xdc:158]
-CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/constrs_1/imports/new/PYNQ-Z2v1.0.xdc:158]
-Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
-Finished Parsing XDC File [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/constrs_1/imports/new/PYNQ-Z2v1.0.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/wiktoria/Documents/labs/cdd/lab4/lab4.srcs/constrs_1/imports/new/PYNQ-Z2v1.0.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/mp_adder_propImpl.xdc].
-Resolution: To avoid this warning, move constraints listed in [.Xil/mp_adder_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/constrs_1/imports/new/PYNQ-Z2v1.0.xdc]
+Finished Parsing XDC File [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/constrs_1/imports/new/PYNQ-Z2v1.0.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.srcs/constrs_1/imports/new/PYNQ-Z2v1.0.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/uart_top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/uart_top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2294.832 ; gain = 0.000 ; free physical = 4934 ; free virtual = 10731
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2314.770 ; gain = 0.000 ; free physical = 790 ; free virtual = 12452
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2294.832 ; gain = 0.000 ; free physical = 4934 ; free virtual = 10731
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2314.770 ; gain = 0.000 ; free physical = 790 ; free virtual = 12452
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 5001 ; free virtual = 10799
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 2314.770 ; gain = 221.523 ; free physical = 877 ; free virtual = 12548
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 5001 ; free virtual = 10799
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 2314.770 ; gain = 221.523 ; free physical = 877 ; free virtual = 12548
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:11 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 5003 ; free virtual = 10801
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:12 . Memory (MB): peak = 2314.770 ; gain = 221.523 ; free physical = 877 ; free virtual = 12548
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'rFSM_current_reg' in module 'mp_adder'
+INFO: [Synth 8-802] inferred FSM for state register 'rFSM_Current_reg' in module 'uart_tx'
+INFO: [Synth 8-802] inferred FSM for state register 'rFSM_reg' in module 'uart_top'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -104,29 +136,82 @@ INFO: [Synth 8-802] inferred FSM for state register 'rFSM_current_reg' in module
                   s_DONE |                              100 |                              100
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'rFSM_current_reg' using encoding 'sequential' in module 'mp_adder'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                   sIDLE |                            00001 |                              000
+               sTX_START |                            00010 |                              001
+                sTX_DATA |                            00100 |                              010
+                sTX_STOP |                            01000 |                              011
+                   sDONE |                            10000 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rFSM_Current_reg' using encoding 'one-hot' in module 'uart_tx'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                  s_IDLE |                              000 |                              000
+             s_WAIT_RX_A |                              001 |                              001
+             s_WAIT_RX_B |                              010 |                              010
+               s_WAIT_OP |                              011 |                              011
+              s_MP_ADDER |                              100 |                              100
+                    s_TX |                              101 |                              101
+               s_WAIT_TX |                              110 |                              110
+                  s_DONE |                              111 |                              111
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rFSM_reg' using encoding 'sequential' in module 'uart_top'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 5003 ; free virtual = 10802
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 2314.770 ; gain = 221.523 ; free physical = 865 ; free virtual = 12537
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input    4 Bit       Adders := 1     
+	   2 Input  512 Bit       Adders := 1     
+	   2 Input   13 Bit       Adders := 1     
+	   2 Input   11 Bit       Adders := 1     
+	   2 Input    7 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 1     
+	   2 Input    3 Bit       Adders := 2     
 +---XORs : 
-	   2 Input      1 Bit         XORs := 240   
+	   2 Input      1 Bit         XORs := 112   
 +---Registers : 
-	              512 Bit    Registers := 3     
-	                4 Bit    Registers := 1     
-	                1 Bit    Registers := 2     
+	              520 Bit    Registers := 1     
+	              512 Bit    Registers := 5     
+	               13 Bit    Registers := 1     
+	               12 Bit    Registers := 1     
+	                8 Bit    Registers := 4     
+	                7 Bit    Registers := 1     
+	                5 Bit    Registers := 1     
+	                3 Bit    Registers := 3     
+	                1 Bit    Registers := 6     
 +---Muxes : 
+	   8 Input  520 Bit        Muxes := 1     
+	   2 Input  513 Bit        Muxes := 1     
 	   2 Input  512 Bit        Muxes := 2     
-	   2 Input    8 Bit        Muxes := 7     
-	   5 Input    4 Bit        Muxes := 1     
-	   5 Input    3 Bit        Muxes := 1     
-	   2 Input    3 Bit        Muxes := 2     
+	   8 Input  512 Bit        Muxes := 2     
+	   2 Input   13 Bit        Muxes := 3     
+	   6 Input   13 Bit        Muxes := 1     
+	   5 Input   12 Bit        Muxes := 1     
+	   6 Input    8 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 4     
+	   5 Input    8 Bit        Muxes := 1     
+	   8 Input    8 Bit        Muxes := 1     
+	   2 Input    7 Bit        Muxes := 2     
+	   8 Input    7 Bit        Muxes := 1     
+	   5 Input    5 Bit        Muxes := 2     
+	   2 Input    5 Bit        Muxes := 5     
+	   6 Input    3 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 11    
+	   5 Input    3 Bit        Muxes := 3     
+	   8 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 1     
+	   3 Input    2 Bit        Muxes := 1     
+	   6 Input    1 Bit        Muxes := 3     
 	   2 Input    1 Bit        Muxes := 8     
-	   5 Input    1 Bit        Muxes := 2     
+	   5 Input    1 Bit        Muxes := 4     
+	   3 Input    1 Bit        Muxes := 1     
+	   8 Input    1 Bit        Muxes := 10    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -143,25 +228,25 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:15 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 4998 ; free virtual = 10776
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2314.770 ; gain = 221.523 ; free physical = 837 ; free virtual = 12505
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:20 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 4777 ; free virtual = 10616
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:27 . Memory (MB): peak = 2314.770 ; gain = 221.523 ; free physical = 724 ; free virtual = 12391
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:20 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 4763 ; free virtual = 10602
+Finished Timing Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 2396.973 ; gain = 303.727 ; free physical = 630 ; free virtual = 12343
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:21 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 4762 ; free virtual = 10597
+Finished Technology Mapping : Time (s): cpu = 00:00:33 ; elapsed = 00:00:37 . Memory (MB): peak = 2396.973 ; gain = 303.727 ; free physical = 624 ; free virtual = 12320
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -179,37 +264,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 4809 ; free virtual = 10619
+Finished IO Insertion : Time (s): cpu = 00:00:36 ; elapsed = 00:00:40 . Memory (MB): peak = 2396.973 ; gain = 303.727 ; free physical = 639 ; free virtual = 12319
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 4809 ; free virtual = 10619
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:36 ; elapsed = 00:00:40 . Memory (MB): peak = 2396.973 ; gain = 303.727 ; free physical = 639 ; free virtual = 12319
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:20 ; elapsed = 00:00:24 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 4789 ; free virtual = 10618
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:36 ; elapsed = 00:00:40 . Memory (MB): peak = 2396.973 ; gain = 303.727 ; free physical = 663 ; free virtual = 12326
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:20 ; elapsed = 00:00:24 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 4789 ; free virtual = 10618
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:37 ; elapsed = 00:00:40 . Memory (MB): peak = 2396.973 ; gain = 303.727 ; free physical = 663 ; free virtual = 12326
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 4789 ; free virtual = 10618
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:37 ; elapsed = 00:00:41 . Memory (MB): peak = 2396.973 ; gain = 303.727 ; free physical = 662 ; free virtual = 12326
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 4789 ; free virtual = 10618
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:37 ; elapsed = 00:00:41 . Memory (MB): peak = 2396.973 ; gain = 303.727 ; free physical = 662 ; free virtual = 12326
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -222,38 +307,42 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+-----+------+
-|      |Cell |Count |
-+------+-----+------+
-|1     |BUFG |     1|
-|2     |LUT2 |    17|
-|3     |LUT3 |    38|
-|4     |LUT4 |   148|
-|5     |LUT5 |   984|
-|6     |LUT6 |    34|
-|7     |FDRE |  1569|
-|8     |IBUF |  1027|
-|9     |OBUF |   514|
-+------+-----+------+
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |   133|
+|3     |LUT1   |   513|
+|4     |LUT2   |   546|
+|5     |LUT3   |    36|
+|6     |LUT4   |   731|
+|7     |LUT5   |  1046|
+|8     |LUT6   |   463|
+|9     |FDRE   |  3213|
+|10    |FDSE   |     1|
+|11    |IBUF   |     3|
+|12    |OBUF   |     1|
++------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 4789 ; free virtual = 10618
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:37 ; elapsed = 00:00:41 . Memory (MB): peak = 2396.973 ; gain = 303.727 ; free physical = 662 ; free virtual = 12326
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:22 . Memory (MB): peak = 2294.832 ; gain = 35.867 ; free physical = 4846 ; free virtual = 10674
-Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 2294.832 ; gain = 201.586 ; free physical = 4846 ; free virtual = 10674
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:35 ; elapsed = 00:00:39 . Memory (MB): peak = 2396.973 ; gain = 126.039 ; free physical = 728 ; free virtual = 12392
+Synthesis Optimization Complete : Time (s): cpu = 00:00:37 ; elapsed = 00:00:41 . Memory (MB): peak = 2396.980 ; gain = 303.727 ; free physical = 728 ; free virtual = 12392
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2294.832 ; gain = 0.000 ; free physical = 4928 ; free virtual = 10750
-WARNING: [Netlist 29-101] Netlist 'mp_adder' is not ideal for floorplanning, since the cellview 'mp_adder' contains a large number of primitives.  Please consider enabling hierarchy in synthesis if you want to do floorplanning.
+Netlist sorting complete. Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2396.980 ; gain = 0.000 ; free physical = 800 ; free virtual = 12464
+INFO: [Netlist 29-17] Analyzing 133 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2303.738 ; gain = 0.000 ; free physical = 4884 ; free virtual = 10695
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2428.988 ; gain = 0.000 ; free physical = 749 ; free virtual = 12413
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-25 Infos, 3 Warnings, 2 Critical Warnings and 0 Errors encountered.
+38 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:29 ; elapsed = 00:00:30 . Memory (MB): peak = 2303.738 ; gain = 210.492 ; free physical = 5010 ; free virtual = 10821
-INFO: [Common 17-1381] The checkpoint '/home/wiktoria/Documents/labs/cdd/lab4/lab4.runs/synth_1/mp_adder.dcp' has been generated.
-INFO: [runtcl-4] Executing : report_utilization -file mp_adder_utilization_synth.rpt -pb mp_adder_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Apr 30 23:20:56 2024...
+synth_design: Time (s): cpu = 00:00:46 ; elapsed = 00:00:47 . Memory (MB): peak = 2428.988 ; gain = 335.742 ; free physical = 909 ; free virtual = 12573
+INFO: [Common 17-1381] The checkpoint '/home/wiktoria/Documents/slajdy/complex digital design/labs/lab4/lab4.runs/synth_1/uart_top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file uart_top_utilization_synth.rpt -pb uart_top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Wed May  1 18:05:54 2024...
