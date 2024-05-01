@@ -89,6 +89,31 @@ module top_module_csa_mp_TB();
       end
       
       
+       //THIS is the operation
+      //BYTE 1
+      rRx = 1;
+      #(CLOCK_PERIOD);
+      rRx = 0; //START BIT
+      #(CLOCK_PERIOD);
+      rRx = 1;
+      #(CLOCK_PERIOD);
+      rRx = 0;
+      #(CLOCK_PERIOD);
+      rRx = 0;
+      #(CLOCK_PERIOD);
+      rRx = 0;
+      #(CLOCK_PERIOD);
+      rRx = 0;
+      #(CLOCK_PERIOD);
+      rRx = 0;
+      #(CLOCK_PERIOD);
+      rRx = 0;
+      #(CLOCK_PERIOD);
+      rRx = 0;
+      #(CLOCK_PERIOD);
+      rRx = 1; //END BIT
+      
+      
       // Let it run for a while
       #(50*CLOCK_PERIOD);
             
