@@ -50,6 +50,7 @@ module uart_top #(
   wire[NBYTES*8:0] wRes;
   wire wDone;
   reg[(NBYTES+1)*8-1:0] rRes;
+  reg           rSub;
   
   
   uart_rx #(    .CLK_FREQ(CLK_FREQ), .BAUD_RATE(BAUD_RATE) )
@@ -67,6 +68,7 @@ module uart_top #(
   (.iClk(iClk),
   .iRst(iRst),
   .iStart(riStart),
+  .iSub(rSub),
   .iOpA(rA),
   .iOpB(rB),
   .oRes(wRes),
@@ -98,6 +100,7 @@ module uart_top #(
       rTxStart <= 0;
       rCnt <= 0;
       rTxByte <= 0;
+      rSub <= 0;
       rA <= 0;
       rB <= 0;
       riStart <= 0;
@@ -149,6 +152,10 @@ module uart_top #(
                 rCnt <= 0;
                 riStart = 1;
                 rFSM <= s_MP_ADDER; 
+                if (wRxByte == 1)
+                    begin
+                        rSub <= 1;
+                    end
              end   
           end
           
@@ -184,6 +191,7 @@ module uart_top #(
                 rTxByte <= 0;
                 rCnt <= 0;
                 rRes <= rRes;
+                rSub <= 0;
               end
             end 
             

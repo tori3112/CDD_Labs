@@ -13,6 +13,7 @@ module mp_adder #(
     input  wire                       iClk,
     input  wire                       iRst,
     input  wire                       iStart,
+    input  wire                       iSub,
     input  wire [OPERAND_WIDTH-1:0]   iOpA,
     input  wire [OPERAND_WIDTH-1:0]   iOpB,
     output wire [OPERAND_WIDTH:0]     oRes,  
@@ -55,9 +56,10 @@ module mp_adder #(
     //   - the input iOpB
     //   - the output of register B shifted-right 
     reg          muxB_sel;
-    wire  [OPERAND_WIDTH-1:0] muxB_Out;
+    wire  [OPERAND_WIDTH-1:0] muxB_In, muxB_Out;
     
-    assign muxB_Out = (muxB_sel == 0) ? iOpB : { {ADDER_WIDTH{1'b0}}  , regB_Q[OPERAND_WIDTH-1:ADDER_WIDTH]};
+    assign muxB_In = (iSub) ? ~iOpB+1 : iOpB;
+    assign muxB_Out = (muxB_sel == 0) ? muxB_In : { {ADDER_WIDTH{1'b0}}  , regB_Q[OPERAND_WIDTH-1:ADDER_WIDTH]};
     
     // connect the output of the multiplexer to the input of register B
     assign regB_D = muxB_Out;
@@ -115,9 +117,10 @@ module mp_adder #(
     //   - 0
     //   - carry-out
     reg  muxCarry_sel;
-    wire muxCarryIn;
+    wire muxCarrySub, muxCarryIn;
 
-    assign muxCarryIn = (muxCarry_sel == 0) ? 1'b0 : regCout;
+    assign muxCarrySub = (iSub) ? 1 : 0;
+    assign muxCarryIn = (muxCarry_sel == 0) ? muxCarrySub : regCout;
 
     // Connect the inputs of adder to the outputs of A and B registers
     // and to the carry mux
