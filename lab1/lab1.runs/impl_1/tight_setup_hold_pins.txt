@@ -1,0 +1,25 @@
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|       Launch Clock       |      Capture Clock       |                                                 Pin                                                      |
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+
+|              sys_clk_pin |              sys_clk_pin |                                                                                           oCarryOut_reg/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[63]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[55]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[60]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[62]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[57]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[59]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[54]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[58]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[51]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[56]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[50]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[52]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[44]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[43]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[47]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[36]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[42]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[37]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[31]/D|
+|              sys_clk_pin |              sys_clk_pin |                                                                                         rResult_reg[34]/D|
++--------------------------+--------------------------+----------------------------------------------------------------------------------------------------------+

@@ -1,0 +1,12 @@
+0.7
+2020.1
+May 27 2020
+19:59:15
+/home/wiktoria/Documents/labs/cdd/lab3/lab3.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
+/home/wiktoria/Documents/labs/cdd/lab3/lab3.srcs/sim_1/new/top_module_mp_TB.v,1713809702,verilog,,,,uart_top__mp_adder_TB,,,,,,,,
+/home/wiktoria/Documents/labs/cdd/lab3/lab3.srcs/sources_1/imports/lab2/uart_top.v,1713808986,verilog,,/home/wiktoria/Documents/labs/cdd/lab3/lab3.srcs/sources_1/imports/lab2/uart_tx.v,,uart_top,,,,,,,,
+/home/wiktoria/Documents/labs/cdd/lab3/lab3.srcs/sources_1/imports/lab2/uart_tx.v,1713809066,verilog,,/home/wiktoria/Documents/labs/cdd/lab3/lab3.srcs/sim_1/new/top_module_mp_TB.v,,uart_tx,,,,,,,,
+/home/wiktoria/Documents/labs/cdd/lab3/lab3.srcs/sources_1/imports/lab3/mp_adder.v,1711348760,verilog,,/home/wiktoria/Documents/labs/cdd/lab3/lab3.srcs/sources_1/imports/new/ripple_carry_adder_Nb.v,,mp_adder,,,,,,,,
+/home/wiktoria/Documents/labs/cdd/lab3/lab3.srcs/sources_1/imports/new/full_adder.v,1708941932,verilog,,/home/wiktoria/Documents/labs/cdd/lab3/lab3.srcs/sources_1/imports/lab3/mp_adder.v,,full_adder,,,,,,,,
+/home/wiktoria/Documents/labs/cdd/lab3/lab3.srcs/sources_1/imports/new/ripple_carry_adder_Nb.v,1708945472,verilog,,/home/wiktoria/Documents/labs/cdd/lab3/lab3.srcs/sources_1/new/uart_rx.v,,ripple_carry_adder_Nb,,,,,,,,
+/home/wiktoria/Documents/labs/cdd/lab3/lab3.srcs/sources_1/new/uart_rx.v,1711348602,verilog,,/home/wiktoria/Documents/labs/cdd/lab3/lab3.srcs/sources_1/imports/lab2/uart_top.v,,uart_rx,,,,,,,,

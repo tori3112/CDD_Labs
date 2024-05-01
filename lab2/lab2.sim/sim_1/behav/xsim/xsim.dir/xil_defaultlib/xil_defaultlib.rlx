@@ -1,0 +1,11 @@
+0.7
+2020.1
+May 27 2020
+19:59:15
+/home/wiktoria/Documents/labs/cdd/lab2/lab2.sim/sim_1/behav/xsim/glbl.v,1590624368,verilog,,,,glbl,,,,,,,,
+/home/wiktoria/Documents/labs/cdd/lab2/lab2.srcs/sim_1/imports/lab2/uart_rx_TB.v,1710148691,verilog,,,,uart_rx_TB,,,,,,,,
+/home/wiktoria/Documents/labs/cdd/lab2/lab2.srcs/sim_1/imports/lab2/uart_top_TB.v,1711315385,verilog,,,,uart_top_TB,,,,,,,,
+/home/wiktoria/Documents/labs/cdd/lab2/lab2.srcs/sim_1/imports/lab2/uart_tx_TB.v,1710068850,verilog,,,,uart_tx_TB,,,,,,,,
+/home/wiktoria/Documents/labs/cdd/lab2/lab2.srcs/sources_1/imports/lab2/uart_top.v,1713019126,verilog,,/home/wiktoria/Documents/labs/cdd/lab2/lab2.srcs/sources_1/imports/lab2/uart_tx.v,,uart_top,,,,,,,,
+/home/wiktoria/Documents/labs/cdd/lab2/lab2.srcs/sources_1/imports/lab2/uart_tx.v,1710068850,verilog,,/home/wiktoria/Documents/labs/cdd/lab2/lab2.srcs/sim_1/imports/lab2/uart_top_TB.v,,uart_tx,,,,,,,,
+/home/wiktoria/Documents/labs/cdd/lab2/lab2.srcs/sources_1/new/uart_rx.v,1713018599,verilog,,/home/wiktoria/Documents/labs/cdd/lab2/lab2.srcs/sources_1/imports/lab2/uart_top.v,,uart_rx,,,,,,,,

@@ -1,0 +1,3 @@
+Vivado Simulator 2020.1
+Time resolution is 1 ps
+$stop called at time : 23500 ps : File "/home/wiktoria/Documents/labs/cdd/lab2/lab2.srcs/sim_1/imports/lab2/uart_top_TB.v" Line 307

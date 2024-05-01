@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Mon Feb 26 12:36:54 2024
+# Process ID: 31680
+# Current directory: /home/wiktoria/Documents/labs/cdd/lab1/lab1.runs/synth_1
+# Command line: vivado -log wrap_adder.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source wrap_adder.tcl
+# Log file: /home/wiktoria/Documents/labs/cdd/lab1/lab1.runs/synth_1/wrap_adder.vds
+# Journal file: /home/wiktoria/Documents/labs/cdd/lab1/lab1.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source wrap_adder.tcl -notrace
